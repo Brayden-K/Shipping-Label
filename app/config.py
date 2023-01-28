@@ -2,7 +2,6 @@ from flask import session
 from app import app
 import os, time, requests, json, re
 from dotenv import load_dotenv
-load_dotenv()
 
 app.debug = True
 app.config['ENVIRONMENT'] = os.getenv('ENVIRONMENT')
@@ -12,6 +11,7 @@ app.config['MYSQLHOST'] = os.getenv('MYSQLHOST')
 app.config['MYSQLUSER'] = os.getenv('MYSQLUSER')
 app.config['MYSQLPASS'] = os.getenv('MYSQLPASS')
 app.config['MYSQLDB'] = os.getenv('MYSQLDB')
+load_dotenv()
 
 from app.database import MySQL
 
