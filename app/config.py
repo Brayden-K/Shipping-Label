@@ -3,15 +3,15 @@ from app import app
 import os, time, requests, json, re
 from dotenv import load_dotenv
 load_dotenv()
+
 app.debug = True
 app.config['ENVIRONMENT'] = os.getenv('ENVIRONMENT')
-app.config['MYENVIRONMENT'] = os.getenv('ENVIRONMENT')
+app.config['MYENVIRONMENT'] = os.getenv('MYENVIRONMENT')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MYSQLHOST'] = os.getenv('MYSQLHOST')
 app.config['MYSQLUSER'] = os.getenv('MYSQLUSER')
 app.config['MYSQLPASS'] = os.getenv('MYSQLPASS')
 app.config['MYSQLDB'] = os.getenv('MYSQLDB')
-
 
 from app.database import MySQL
 
