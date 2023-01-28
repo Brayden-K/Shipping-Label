@@ -1,0 +1,24 @@
+{% if not request.endpoint == 'dashboard' %}
+		<nav class="navbar navbar-expand-lg fixed-top">
+			<div class="container">
+				<a id="logo" class="navbar-brand text-primary" href="{{url_for('index')}}" hidden>{{settings.siteName}}</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto">
+						<a id="mobileLogo" class="navbar-brand text-primary" href="{{url_for('index')}}">{{settings.siteName}}</a>
+					</ul>
+					<ul class="navbar-nav ms-auto">
+						{% if not session.loggedin %}
+						<button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn m-1 btn-outline-light">Login</button>
+						<button data-bs-toggle="modal" data-bs-target="#registerModal" class="btn m-1 btn-primary">Sign Up</button>
+						{% else %}
+						<a href="#" class="btn m-1 btn-primary">Dashboard</a>
+						<a href="{{url_for('logout')}}" class="btn m-1 btn-outline-light">Logout</a>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+{% endif %}

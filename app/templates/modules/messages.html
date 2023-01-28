@@ -1,0 +1,10 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	<div id="messages" class="animate__animated">
+		{% for message in messages %}
+			<i onclick="fade_out()" class="fa-regular fa-x"></i>
+			{{ message }}
+		{% endfor %}
+	</div>
+{% endif %}
+{% endwith %}

@@ -1,0 +1,134 @@
+<!-- Login Modal -->
+<div class="modal fade align-items-middle" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="loginModalLabel">Client Login</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{url_for('login')}}" method="post">
+					<div class="mb-3">
+						<label for="username" class="form-label">Email</label>
+						<input type="email" class="form-control form-control-lg" name="username" autocomplete="off" id="username" required>
+					</div>
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input type="password" class="form-control form-control-lg" name="password" autocomplete="off" id="password" required>
+					</div>
+					<div class="modal-footer">
+						<button id="loginSubmitBtn" type="submit" class="btn btn-primary mx-auto w-25">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Login Modal -->
+<!-- Registration Modal -->
+<div class="modal fade align-items-middle" id="registerModal" tabindex="-1" aria-labelledby="registerModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="registerModal">Sign Up</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body text-center">
+				<form action="{{url_for('register')}}" method="post">
+					<div class="mb-3">
+						<label for="registerEmail" class="form-label">Email</label>
+						<input type="email" class="form-control form-control-lg" name="email" autocomplete="off" id="registerEmail" required>
+					</div>
+					<div class="mb-3">
+						<label for="registerPassword" class="form-label">Password</label>
+						<input type="password" class="form-control form-control-lg" name="password" autocomplete="off" id="registerPassword" required>
+					</div>
+					<div class="mb-3">
+						<label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+						<input type="password" class="form-control form-control-lg" name="confirmPassword" autocomplete="off" id="registerConfirmPassword" required>
+					</div>
+					{% if settings.requireCaptcha %}
+					<div class="captcha d-flex justify-content-center m-3">
+						<script type="text/javascript">
+						let useCaptcha = true;
+						var onloadCallback = function() {
+						grecaptcha.render('html_element', {
+						'sitekey' : '6LezZi8kAAAAAK0zr1Q37h3wDErCQ3Xe1OsCe_zG',
+						'callback' : captchaRegisterCallback
+						});
+						};
+						</script>
+						<div id="html_element"></div>
+						<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+						async defer>
+						</script>
+					</div>
+					{% else %}
+					<script>let useCaptcha = false;</script>
+					{% endif %}
+					<div class="modal-footer">
+						<button id="registerSubmitBtn" type="submit" class="btn btn-primary mx-auto w-25" disabled>Sign Up</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Registration Modal -->
+<!-- Contact Modal -->
+<div class="modal fade align-items-middle" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="contactModalLabel">Contact Us</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="#" method="post">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="md-form mb-0">
+								<label for="name" class="">Your name</label>
+								<input type="text" id="name" name="name" class="form-control" autocomplete="off" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="md-form mb-0">
+								<label for="email" class="">Your email</label>
+								<input type="email" id="email" name="email" class="form-control" autocomplete="off" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="md-form mb-0">
+								<label for="phone" class="">Phone</label>
+								<input type="tel" id="phone" name="phone" class="form-control" autocomplete="off" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="md-form mb-0">
+								<label for="subject" class="">Subject</label>
+								<input type="text" id="subject" name="subject" class="form-control" autocomplete="off" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="md-form">
+								<label for="message">Your message</label>
+								<textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea" autocomplete="off" required></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary mx-auto w-25">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Login Modal -->

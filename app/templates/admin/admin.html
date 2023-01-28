@@ -1,0 +1,72 @@
+{% extends "admin/adminbase.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+	<section id="stats">
+		<div class="row hcenter">
+			<div class="col-lg-2">
+				<article>
+					Profits<br><span class="primary font">${{profitUsd}}</span><br>
+				</article>
+			</div>
+			<div class="col-lg-2">
+				<article>
+					Total Members<br><span class="primary font">{{members|length}}</span>
+				</article>
+			</div>
+			<div class="col-lg-2">
+				<article>
+					Requests<br><span class="primary font">{{stats.requests}}</span>
+				</article>
+			</div>
+			<div class="col-lg-2">
+				<article>
+					Visits<br><span class="primary font">{{stats.visits}}</span>
+				</article>
+			</div>
+			<div class="col-lg-2">
+				<article>
+					Page Views<br><span class="primary font">{{stats.pageViews}}</span>
+				</article>
+			</div>
+			<div class="col-lg-2">
+				<article>
+					Invoices<br><span class="primary font">{{totalInvoices}}</span>
+				</article>
+			</div>
+		</div>
+	</section>
+	<section id="members">
+		<article>
+			<header>
+				Quick Member Options
+			</header>
+			<input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
+			<div class="grid">
+				<button class="outline" onclick="giveUpgrade('elite')">Gift <span class="elite">Elite</span></button>
+				<button class="outline" onclick="giveUpgrade('premium')">Gift <span class="premium">Premium</span></button>
+				<button class="outline" onclick="giveUpgrade('elite', 1)">Gift <span class="elite">Elite</span> Trial</button>
+				<button class="outline" onclick="giveUpgrade('premium', 1)">Gift <span class="elite">Premium</span> Trial</button>
+				<button class="outline" data-target="ban-user-modal" onClick="toggleModal(event), updateBanModal()">Ban</button>
+			</div>
+		</article>
+	</section>
+	<section id="clearfiles">
+		<article>
+			<header>
+				Quick Clear Temporary Files
+			</header>
+			<div id="tempfilecount" class="hcenter"></div>
+			<button class="outline" onclick="clearFiles()">Clear Files</button>
+		</article>
+	</section>
+	<dialog id="ban-user-modal">
+	<article>
+		<header id="banheader" class="hcenter">
+		</header>
+		<div class="container">
+			<textarea type="text" id="banreason" name="banreason" placeholder="Reason" autocomplete="off" rows="4" cols="50" required></textarea>
+			<button onclick="banUser()">Ban</button>
+		</div>
+	</article>
+	</dialog>
+{% endblock %}
