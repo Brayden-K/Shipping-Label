@@ -6,6 +6,7 @@ load_dotenv()
 
 app.debug = True
 app.config['ENVIRONMENT'] = os.getenv('ENVIRONMENT')
+app.config['MYENVIRONMENT'] = os.getenv('ENVIRONMENT')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MYSQLHOST'] = os.getenv('MYSQLHOST')
 app.config['MYSQLUSER'] = os.getenv('MYSQLUSER')

@@ -12,7 +12,7 @@
 		<title>{{settings.siteName}} - {% block title %}{% endblock %}</title>
 	</head>
 	<body>
-		{% if config.ENVIRONMENT == 'production' and settings.underConstruction %}
+		{% if config.MYENVIRONMENT == 'production' and settings.underConstruction %}
 		{% include 'modules/underconstruction.html' %}
 		{% endif %}
 		{% include 'modules/messages.html' %}
