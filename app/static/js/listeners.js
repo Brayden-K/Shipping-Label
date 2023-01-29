@@ -7,3 +7,11 @@ document.getElementById('registerConfirmPassword').addEventListener('keyup', deb
     checkPasswordsMatch();
     canSubmitSignUp();
 }, 1000))
+
+try {
+    document.getElementById("msgBClose").addEventListener("click", function(){
+        document.getElementById('alert-dashboard-message').remove()
+    });
+} catch (e) {
+    
+}

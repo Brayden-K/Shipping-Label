@@ -30,7 +30,7 @@ def login():
 	session['loggedin'] = True
 	session['username'] = user['email']
 	flash('You have successfully logged in')
-	return redirect(url_for('index'))
+	return redirect(url_for('dashboard'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

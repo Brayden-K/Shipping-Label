@@ -25,7 +25,7 @@ html {
 	background-color: var(--bs-body-bg);
 	padding: 25px;
 	right: 25px;
-	top: 80px;
+	top: 100px;
 	border: 1px solid var(--bs-primary);
 	color: var(--bs-primary-text);
 	min-width: 200px;
@@ -43,9 +43,35 @@ html {
 	}
 }
 
-nav {
+.mainnav {
 	height: 80px;
-	background-color: none;
+	background-color: $blue-700 !important;
+	li {
+		&:hover {
+			background-color: $blue-700;
+			border-radius: 10px;
+		}
+	}
+	.navBalance {
+		background-color: $blue-700;
+		padding: 10px;
+		border-radius: 5px;
+		font-size: 14px;
+	}
+	#mobileLogo {
+		font-weight: 700;
+	}
+	#mobileLogo, #logo {
+		color: white !important;
+	}
+	.avatar-sm {
+		margin-left: 10px;
+		img {
+			width: 2.5rem;
+			height: 2.5rem;
+			border: 1px solid $blue-800
+		}
+	}
 }
 
 .navbar-collapse {
