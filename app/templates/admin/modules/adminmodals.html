@@ -7,12 +7,108 @@
 			</div>
 			<div class="modal-body">
 				{% if tickets %}
-				{{tickets}}
+					{{tickets}}
 				{% else %}
-				<div class="text-center">
-					There are no tickets.
-				</div>
+					<div class="text-center">
+						There are no tickets.
+					</div>
 				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal modal-xl fade align-items-middle" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" id="site-settings-tab" data-bs-toggle="pill" data-bs-target="#site-settings" type="button" role="tab" aria-controls="site-settings" aria-selected="true">Site Settings</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="user-settings-tab" data-bs-toggle="pill" data-bs-target="#user-settings" type="button" role="tab" aria-controls="user-settings" aria-selected="false">User Settings</button>
+					</li>
+				</ul>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="tab-content" id="pills-tabContent">
+					<div class="tab-pane fade show active" id="site-settings" role="tabpanel" aria-labelledby="site-settings-tab" tabindex="0">
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="siteName" class="form-label">Site Name</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="siteName" value="{{settings.siteName}}">
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="siteTitle" class="form-label">Site Title</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="siteTitle" value="{{settings.siteTitle}}">
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="siteDescription" class="form-label">Site Title</label>
+							</div>
+							<div class="col-lg-10">
+								<textarea class="form-control form-control-lg" id="siteDescription">{{settings.siteDescription}}</textarea>
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label class="form-check-label" for="underConstruction">Under Construction</label>
+							</div>
+							<div class="col-lg-2">
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" role="switch" id="underConstruction" {% if settings.underConstruction %}checked{% endif %}>
+								</div>
+							</div>
+							<div class="col-lg-2">
+								<label class="form-check-label" for="requireCaptcha">Require Captcha</label>
+							</div>
+							<div class="col-lg-2">
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" role="switch" id="requireCaptcha" {% if settings.requireCaptcha %}checked{% endif %}>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="user-settings" role="tabpanel" aria-labelledby="user-settings-tab" tabindex="0">
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label class="form-check-label" for="showDashboardMessage">Show Dashboard Message</label>
+							</div>
+							<div class="col-lg-2">
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" role="switch" id="showDashboardMessage" {% if settings.showDashboardMessage %}checked{% endif %}>
+								</div>
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="dashboardTitle" class="form-label">Dashboard Title</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="dashboardTitle" value="{{settings.dashboardTitle}}" {% if not settings.showDashboardMessage %}disabled{% endif %}>
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="dashboardMessage" class="form-label">Dashboard Message</label>
+							</div>
+							<div class="col-lg-10">
+								<textarea class="form-control form-control-lg" id="dashboardMessage" {% if not settings.showDashboardMessage %}disabled{% endif %}>{{settings.dashboardMessage}}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="saveSettingsBtn" type="submit" class="btn btn-primary">Save Settings</button>
 			</div>
 		</div>
 	</div>

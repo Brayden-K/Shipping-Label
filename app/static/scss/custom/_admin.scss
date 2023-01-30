@@ -28,4 +28,19 @@
 			font-weight: 700;
 		}
 	}
+	.card {
+		background-color: $blue-700;
+	}
+}
+
+#settingsModal {
+	.row {
+		margin-bottom: 5px;
+	}
+}
+
+.form-control {
+	&:disabled {
+		background-color: $blue-900;
+	}
 }

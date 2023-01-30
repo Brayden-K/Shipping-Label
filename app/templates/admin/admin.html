@@ -13,12 +13,6 @@
 			</a>
 			<hr>
 			<ul class="nav nav-pills flex-column mb-auto">
-				<li class="nav-item">
-					<a href="#" class="nav-link text-white">
-						<i class="fa-solid fa-house"></i>
-						Home
-					</a>
-				</li>
 				<li>
 					<a href="#" data-bs-toggle="modal" data-bs-target="#ticketModal" class="nav-link text-white">
 						<i class="fa-solid fa-envelope"></i>
@@ -41,6 +35,12 @@
 					<a href="#" class="nav-link text-white">
 						<i class="fa-solid fa-coins"></i>
 						Transactions
+					</a>
+				</li>
+				<li>
+					<a href="#" data-bs-toggle="modal" data-bs-target="#settingsModal" class="nav-link text-white">
+						<i class="fa-solid fa-gear"></i>
+						Settings
 					</a>
 				</li>
 			</ul>
@@ -68,6 +68,8 @@
 				</div>
 			</div>
 		</div>
+
+		
 	</section>
 	{% include 'admin/modules/adminmodals.html' %}
 	<script type="text/javascript" src="../static/js/admin.js"></script>

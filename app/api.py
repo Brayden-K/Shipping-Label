@@ -21,6 +21,16 @@ def api():
 				return {'success': False, 'msg': 'Email already in use.'}
 
 			return {'success': True, 'msg': 'Email available.'}
+
+		case 'updateSettings':
+			data = request.form.to_dict()
+			del data['action']
+			data['requireCaptcha'] = [1 if data['requireCaptcha'] == 'true' else 0]
+			data['underConstruction'] = [1 if data['underConstruction'] == 'true' else 0]
+			data['showDashboardMessage'] = [1 if data['showDashboardMessage'] == 'true' else 0]
+
+			app.db.UpdateSettings(data)
+			return {'success': True}
 			
 		case _:
 			return {'success': False, 'msg': 'Invalid action specified.'}

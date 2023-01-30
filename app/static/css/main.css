@@ -11908,5 +11908,16 @@ html {
   font-size: 2rem;
   font-weight: 700;
 }
+#admin .card {
+  background-color: #29335d;
+}
+
+#settingsModal .row {
+  margin-bottom: 5px;
+}
+
+.form-control:disabled {
+  background-color: #0e111f;
+}
 
 /*# sourceMappingURL=main.css.map */
