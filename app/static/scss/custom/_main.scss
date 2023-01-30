@@ -48,12 +48,12 @@ html {
 	background-color: $blue-700 !important;
 	li {
 		&:hover {
-			background-color: $blue-700;
+			background-color: $blue-800;
 			border-radius: 10px;
 		}
 	}
 	.navBalance {
-		background-color: $blue-700;
+		background-color: $blue-800;
 		padding: 10px;
 		border-radius: 5px;
 		font-size: 14px;
@@ -71,6 +71,9 @@ html {
 			height: 2.5rem;
 			border: 1px solid $blue-800
 		}
+	}
+	.logoutBtn {
+		color: var(--bs-nav-link-color);
 	}
 }
 
