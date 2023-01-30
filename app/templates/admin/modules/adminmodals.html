@@ -28,6 +28,9 @@
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="user-settings-tab" data-bs-toggle="pill" data-bs-target="#user-settings" type="button" role="tab" aria-controls="user-settings" aria-selected="false">User Settings</button>
 					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="label-settings-tab" data-bs-toggle="pill" data-bs-target="#label-settings" type="button" role="tab" aria-controls="label-settings" aria-selected="false">Label Settings</button>
+					</li>
 				</ul>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
@@ -52,7 +55,7 @@
 						</div>
 						<div class="row align-items-center">
 							<div class="col-lg-2">
-								<label for="siteDescription" class="form-label">Site Title</label>
+								<label for="siteDescription" class="form-label">Site Description</label>
 							</div>
 							<div class="col-lg-10">
 								<textarea class="form-control form-control-lg" id="siteDescription">{{settings.siteDescription}}</textarea>
@@ -75,6 +78,9 @@
 									<input class="form-check-input" type="checkbox" role="switch" id="requireCaptcha" {% if settings.requireCaptcha %}checked{% endif %}>
 								</div>
 							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="saveSettingsBtn" type="submit" class="btn btn-primary">Save Settings</button>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="user-settings" role="tabpanel" aria-labelledby="user-settings-tab" tabindex="0">
@@ -101,14 +107,17 @@
 								<label for="dashboardMessage" class="form-label">Dashboard Message</label>
 							</div>
 							<div class="col-lg-10">
-								<textarea class="form-control form-control-lg" id="dashboardMessage" {% if not settings.showDashboardMessage %}disabled{% endif %}>{{settings.dashboardMessage}}</textarea>
+								<input type="text" class="form-control form-control-lg" id="dashboardMessage" value="{{settings.dashboardMessage}}" {% if not settings.showDashboardMessage %}disabled{% endif %}>
 							</div>
 						</div>
+						<div class="modal-footer">
+							<button id="saveUserSettingsBtn" type="submit" class="btn btn-primary">Save Settings</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="label-settings" role="tabpanel" aria-labelledby="label-settings-tab" tabindex="0">
+						<div class="lead">Nothing here yet..</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button id="saveSettingsBtn" type="submit" class="btn btn-primary">Save Settings</button>
 			</div>
 		</div>
 	</div>

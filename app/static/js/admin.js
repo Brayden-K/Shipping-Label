@@ -16,6 +16,10 @@ document.getElementById("saveSettingsBtn").addEventListener("click", function(){
     saveSettings();
 });
 
+document.getElementById("saveUserSettingsBtn").addEventListener("click", function(){
+    saveSettings();
+});
+
 async function saveSettings() {
     let data = {};
     data['action'] = 'updateSettings';

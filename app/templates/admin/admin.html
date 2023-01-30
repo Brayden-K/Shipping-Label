@@ -58,18 +58,18 @@
 			<div class="col-lg-4">
 				<div class="card stats justify-content-center text-center">
 					<div class="text-primary">Top Ups</div>
-					<span class="number">0</span>
+					<span class="number">{{ invoices|selectattr("status", "equalto", "complete") | list | length }}</span>
 				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="card stats justify-content-center text-center">
 					<div class="text-primary">Members</div>
-					<span class="number">0</span>
+					<span class="number">{{ members|length }}</span>
 				</div>
 			</div>
 		</div>
 
-		
+
 	</section>
 	{% include 'admin/modules/adminmodals.html' %}
 	<script type="text/javascript" src="../static/js/admin.js"></script>

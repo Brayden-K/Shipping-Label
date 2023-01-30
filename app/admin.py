@@ -9,4 +9,6 @@ import time, os, glob, shutil
 @admin_required
 def admin():
 	tickets = app.db.GetAllTickets()
-	return render_template('admin/admin.html', tickets=tickets)
+	members = app.db.GetAllMembers()
+	invoices = app.db.GetAllInvoices()
+	return render_template('admin/admin.html', tickets=tickets, members=members, invoices=invoices)
