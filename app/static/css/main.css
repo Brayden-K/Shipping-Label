@@ -11765,6 +11765,21 @@ html {
   color: var(--bs-nav-link-color);
 }
 
+#not-found {
+  height: 100vh;
+  overflow: hidden;
+}
+#not-found h1, #not-found .h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #6977af;
+}
+#not-found a {
+  width: 50%;
+  height: 50px;
+  line-height: 2;
+}
+
 #dashboard {
   min-height: calc(100vh - 90px);
   margin-top: 90px;
@@ -11860,6 +11875,38 @@ html {
 }
 #dashboard #profileStats p {
   margin-bottom: 0;
+}
+
+#sidebar {
+  position: fixed;
+  height: 100vh;
+  width: 300px;
+  background-color: #29335d;
+}
+#sidebar li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#sidebar li:hover {
+  background-color: #1b223e;
+}
+#sidebar li i {
+  padding-right: 10px;
+}
+
+#admin {
+  width: calc(100vw - 300px);
+  position: fixed;
+  left: 300px;
+  top: 0;
+  padding: 10px;
+}
+#admin .stats {
+  height: 150px;
+}
+#admin .stats .number {
+  font-size: 2rem;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=main.css.map */

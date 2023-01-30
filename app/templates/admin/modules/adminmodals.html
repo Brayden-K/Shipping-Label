@@ -1,0 +1,19 @@
+<div class="modal modal-xl fade align-items-middle" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="ticketModalLabel"></h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{% if tickets %}
+				{{tickets}}
+				{% else %}
+				<div class="text-center">
+					There are no tickets.
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>

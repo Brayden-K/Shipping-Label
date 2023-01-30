@@ -66,3 +66,13 @@ class MySQL:
                 valuesList = list(insert.values())
                 cursor.execute(sql, tuple(valuesList))
                 connection.commit()
+
+    def GetAllTickets(self):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from tickets"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                connection.commit()
+            return result

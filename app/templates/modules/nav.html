@@ -42,6 +42,11 @@
 					</li>
 				</ul>
 				<ul class="navbar-nav ms-auto align-items-center">
+					{% if user.admin %}
+					<li class="nav-item m-1">
+						<a class="nav-link" href="{{url_for('admin')}}"><i class="fa-regular fa-folder-gear"></i> Admin Panel</a>
+					</li>
+					{% endif %}
 					<div class="nav-item" data-bs-toggle="tooltip" title="Balance">
 						<h2 class="mb-0">
 						<span class="navBalance d-flex">

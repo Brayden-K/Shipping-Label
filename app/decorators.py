@@ -27,7 +27,7 @@ def admin_required(f):
 		if not session:
 			return redirect(url_for('login'))
 
-		user = app.db.GetUserByUsername(session['username'])
+		user = app.db.GetUserByEmail(session['username'])
 		if not user['admin']:
 			return redirect(abort(404))
 		return f(*args, **kwargs)

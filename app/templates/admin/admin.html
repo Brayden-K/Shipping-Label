@@ -1,72 +1,74 @@
-{% extends "admin/adminbase.html" %}
-{% block title %}Dashboard{% endblock %}
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
 {% block content %}
-	<section id="stats">
-		<div class="row hcenter">
-			<div class="col-lg-2">
-				<article>
-					Profits<br><span class="primary font">${{profitUsd}}</span><br>
-				</article>
+	<style>
+		.mainnav, #footer {
+			display: none;
+		}
+	</style>
+	<section id="sidebar">
+		<div class="sidenav d-flex flex-column flex-shrink-0 p-3 text-white" style="width: 280px;">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+				<span class="fs-4">{{settings.siteName}}</span>
+			</a>
+			<hr>
+			<ul class="nav nav-pills flex-column mb-auto">
+				<li class="nav-item">
+					<a href="#" class="nav-link text-white">
+						<i class="fa-solid fa-house"></i>
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="#" data-bs-toggle="modal" data-bs-target="#ticketModal" class="nav-link text-white">
+						<i class="fa-solid fa-envelope"></i>
+						Tickets
+					</a>
+				</li>
+				<li>
+					<a href="#" class="nav-link text-white">
+						<i class="fa-solid fa-user"></i>
+						Members
+					</a>
+				</li>
+				<li>
+					<a href="#" class="nav-link text-white">
+						<i class="fa-solid fa-list"></i>
+						Orders
+					</a>
+				</li>
+				<li>
+					<a href="#" class="nav-link text-white">
+						<i class="fa-solid fa-coins"></i>
+						Transactions
+					</a>
+				</li>
+			</ul>
+			<hr>
+		</div>
+	</section>
+	<section id="admin">
+		<div class="row d-flex">
+			<div class="col-lg-4">
+				<div class="card stats justify-content-center text-center">
+					<div class="text-primary">Orders</div>
+					<span class="number">0</span>
+				</div>
 			</div>
-			<div class="col-lg-2">
-				<article>
-					Total Members<br><span class="primary font">{{members|length}}</span>
-				</article>
+			<div class="col-lg-4">
+				<div class="card stats justify-content-center text-center">
+					<div class="text-primary">Top Ups</div>
+					<span class="number">0</span>
+				</div>
 			</div>
-			<div class="col-lg-2">
-				<article>
-					Requests<br><span class="primary font">{{stats.requests}}</span>
-				</article>
-			</div>
-			<div class="col-lg-2">
-				<article>
-					Visits<br><span class="primary font">{{stats.visits}}</span>
-				</article>
-			</div>
-			<div class="col-lg-2">
-				<article>
-					Page Views<br><span class="primary font">{{stats.pageViews}}</span>
-				</article>
-			</div>
-			<div class="col-lg-2">
-				<article>
-					Invoices<br><span class="primary font">{{totalInvoices}}</span>
-				</article>
+			<div class="col-lg-4">
+				<div class="card stats justify-content-center text-center">
+					<div class="text-primary">Members</div>
+					<span class="number">0</span>
+				</div>
 			</div>
 		</div>
 	</section>
-	<section id="members">
-		<article>
-			<header>
-				Quick Member Options
-			</header>
-			<input type="text" id="username" name="username" placeholder="Username" autocomplete="off" required>
-			<div class="grid">
-				<button class="outline" onclick="giveUpgrade('elite')">Gift <span class="elite">Elite</span></button>
-				<button class="outline" onclick="giveUpgrade('premium')">Gift <span class="premium">Premium</span></button>
-				<button class="outline" onclick="giveUpgrade('elite', 1)">Gift <span class="elite">Elite</span> Trial</button>
-				<button class="outline" onclick="giveUpgrade('premium', 1)">Gift <span class="elite">Premium</span> Trial</button>
-				<button class="outline" data-target="ban-user-modal" onClick="toggleModal(event), updateBanModal()">Ban</button>
-			</div>
-		</article>
-	</section>
-	<section id="clearfiles">
-		<article>
-			<header>
-				Quick Clear Temporary Files
-			</header>
-			<div id="tempfilecount" class="hcenter"></div>
-			<button class="outline" onclick="clearFiles()">Clear Files</button>
-		</article>
-	</section>
-	<dialog id="ban-user-modal">
-	<article>
-		<header id="banheader" class="hcenter">
-		</header>
-		<div class="container">
-			<textarea type="text" id="banreason" name="banreason" placeholder="Reason" autocomplete="off" rows="4" cols="50" required></textarea>
-			<button onclick="banUser()">Ban</button>
-		</div>
-	</article>
-	</dialog>
+	{% include 'admin/modules/adminmodals.html' %}
+	<script type="text/javascript" src="../static/js/admin.js"></script>
 {% endblock %}

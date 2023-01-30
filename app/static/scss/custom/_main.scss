@@ -84,3 +84,18 @@ html {
 body {
 	// min-height: 4000px;
 }
+
+#not-found {
+	height: 100vh;
+	overflow: hidden;
+	h1 {
+		font-size: 40px;
+		font-weight: 700;
+		color: $primary;
+	}
+	a {
+		width: 50%;
+		height: 50px;
+		line-height: 2;
+	}
+}

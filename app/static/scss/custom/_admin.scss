@@ -1,0 +1,31 @@
+#sidebar {
+	position: fixed;
+	height: 100vh;
+	width: 300px;
+	background-color: $blue-700;
+	li {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		&:hover {
+			background-color: $blue-800;
+		}
+		i {
+			padding-right: 10px;
+		}
+	}
+}
+
+#admin {
+	width: calc(100vw - 300px);
+	position: fixed;
+	left: 300px;
+	top: 0;
+	padding: 10px;
+	.stats {
+		height: 150px;
+		.number {
+			font-size: 2rem;
+			font-weight: 700;
+		}
+	}
+}
