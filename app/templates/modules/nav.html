@@ -7,11 +7,11 @@
 		{% if not session.loggedin %}
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto">
-					<a id="mobileLogo" class="navbar-brand text-white" href="{{url_for('index')}}">{{settings.siteName}}</a>
+					<a id="mobileLogo" class="navbar-brand text-primary" href="{{url_for('index')}}">{{settings.siteName}}</a>
 				</ul>
 				<ul class="navbar-nav ms-auto">
 					
-					<button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn m-1 btn-outline-light">Login</button>
+					<button data-bs-toggle="modal" data-bs-target="#loginModal" class="btn m-1 btn-outline-dark">Login</button>
 					<button data-bs-toggle="modal" data-bs-target="#registerModal" class="btn m-1 btn-primary">Sign Up</button>
 					
 				</ul>

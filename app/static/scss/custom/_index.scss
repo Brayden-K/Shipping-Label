@@ -1,5 +1,7 @@
 #hero {
-	background: var(--bs-body-bg);
+	background: url('/static/images/herobg2.png');
+	background-size: cover;
+	background-position: center;
 	min-height: 80vh;
 	h1 {
 		// color: $blue-700 !important;

@@ -42,7 +42,7 @@
 										<td class="icon text-center">
 											<i class="fa-lg fa-solid fa-envelope">
 										</td>
-										<td class="name text-white">
+										<td class="name text-secondary">
 											Email:
 										</td>
 										<td class="value text-secondary">
@@ -53,7 +53,7 @@
 										<td class="icon text-center">
 											<i class="fa-lg fa-solid fa-coins">
 										</td>
-										<td class="name text-white">
+										<td class="name text-secondary">
 											Balance:
 										</td>
 										<td class="value text-success">
@@ -64,7 +64,7 @@
 										<td class="icon text-center">
 											<i class="fa-lg fa-brands fa-telegram">
 										</td>
-										<td class="name text-white">
+										<td class="name text-secondary">
 											Telegram:
 										</td>
 										<td class="value text-secondary">
@@ -75,7 +75,7 @@
 										<td class="icon text-center">
 											<i class="fa-lg fa-brands fa-discord">
 										</td>
-										<td class="name text-white">
+										<td class="name text-secondary">
 											Discord:
 										</td>
 										<td class="value text-secondary">
@@ -86,7 +86,7 @@
 										<td class="icon text-center">
 											<i class="fa-lg fa-solid fa-cake-candles"></i>
 										</td>
-										<td class="name text-white">
+										<td class="name text-secondary">
 											Joined:
 										</td>
 										<td class="value text-secondary">
@@ -101,17 +101,17 @@
 						<div class="socialButtons">
 							{% if settings.telegramLink %}
 								<button onclick="location.href='{{settings.telegramLink}}'" type="button" class="btn btn-outline text-primary border border-primary">
-								<i class="fa-xl fa-brands fa-telegram"></i> <span class="text-white">Join our Telegram</span>
+								<i class="fa-xl fa-brands fa-telegram"></i> <span class="text-secondary">Join our Telegram</span>
 								</button>
 							{% endif %}
 							{% if settings.discordLink %}
 								<button onclick="location.href='{{settings.discordLink}}'" type="button" class="btn btn-outline text-primary border border-primary">
-								<i class="fa-xl fa-brands fa-discord"></i> <span class="text-white">Join our Discord</span>
+								<i class="fa-xl fa-brands fa-discord"></i> <span class="text-secondary">Join our Discord</span>
 								</button>
 							{% endif %}
 							{% if settings.email %}
 								<button onclick="location.href='mailto: {{settings.email}}'" type="button" class="btn btn-outline text-primary border border-primary">
-								<i class="fa-xl fa-solid fa-envelope"></i> <span class="text-white">Email Us</span>
+								<i class="fa-xl fa-solid fa-envelope"></i> <span class="text-secondary">Email Us</span>
 								</button>
 							{% endif %}
 						</div>

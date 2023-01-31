@@ -3,12 +3,13 @@
 	// overflow: hidden;
 	margin-top: 90px;
 	.alert-dashboard-message {
-		background-color: $blue-700 !important;
+		// background-color: $blue-700 !important;
 		padding: 25px;
 		border-radius: 10px;
+		border: 1px solid $secondary;
 		i {
 			cursor: pointer;
-			color: white;
+			// color: white;
 		}
 	}
 	.page-title {
@@ -17,14 +18,14 @@
 	.profile {
 		margin-top: 25px;
 		margin-bottom: 25px;
-		background-color: $blue-700;
-		border: none;
+		// background-color: $blue-700;
+		// border: none;
 		.card-body {
 			padding: 25px;
 		}
 	}
 	.dashboardBreadcrumb {
-		background-color: $blue-700;
+		// background-color: $blue-700;
 		line-height: 2.5;
 		padding: 15px;
 		border-radius: 10px;
@@ -34,7 +35,7 @@
 		.breadcrumb-item {
 			color: var(--bs-secondary) !important;
 			a {
-				color: var(--bs-primary);
+				// color: var(--bs-primary);
 				text-decoration: none;
 			}
 		}
@@ -42,7 +43,7 @@
 	.img-container {
 		width: 100%;
 		img {
-			border: 1px solid $blue-800;
+			border: 1px solid $secondary;
 		}
 	}
 	.profileDetails {
@@ -87,11 +88,11 @@
 	#profileStats {
 		.card {
 			height: 120px;
-			background-color: $blue-700;
-			border: none;
+			// background-color: $blue-700;
+			// border: none;
 		}
 		i {
-			color: $blue-800;
+			color: $secondary;
 		}
 		.display-5 {
 			font-weight: 600;
