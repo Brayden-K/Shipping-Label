@@ -1,0 +1,231 @@
+<!-- Add Template -->
+<div class="modal modal-lg fade align-items-middle" id="addTemplate" tabindex="-1" aria-labelledby="addTemplateLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="addTemplateLabel">Add Template</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body p-5">
+				<form action="{{url_for('templates')}}" method="post">
+					<input type="text" class="form-control" name="action" value="addTemplate" required hidden>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="type" class="form-label">Type<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<select class="form-select" name="type" required>
+								<option value="from">FROM</option>
+								<option value="to">TO</option>
+							</select>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="name" class="form-label">Name<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="name" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="address1" class="form-label">Address 1<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="address1" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="address2" class="form-label">Address 2</label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="address2" autocomplete="off">
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="address3" class="form-label">Address 3</label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="address3" autocomplete="off">
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="city" class="form-label">City<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="city" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="state" class="form-label">State<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="state" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="postalCode" class="form-label">Postal Code<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="postalCode" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="companyName" class="form-label">Company Name</label>
+						</div>
+						<div class="col-10">
+							<input type="text" class="form-control" name="companyName" autocomplete="off" >
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="phone" class="form-label">Phone</label>
+						</div>
+						<div class="col-10">
+							<input type="phone" class="form-control" name="phone" autocomplete="off">
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="country" class="form-label">Country<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<select class="form-select" name="country" required>
+								<option value="US">United States</option>
+								<option value="CA">Canada</option>
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer mt-5">
+						<button type="submit" class="btn btn-primary mx-auto w-25">Create Template</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Add Template -->
+
+<!-- Edit Template -->
+<div class="modal modal-lg fade align-items-middle" id="editTemplate" tabindex="-1" aria-labelledby="editTemplateLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="editTemplateLabel">Edit Template</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body p-5">
+				<form action="{{url_for('templates')}}" method="post">
+					<input type="text" class="form-control" name="action" value="editTemplate" required hidden>
+					<input id="idEditInput" type="text" class="form-control" name="templateId" required hidden>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="type" class="form-label">Type<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<select id="edittype" class="form-select" name="type" required>
+								<option value="from">FROM</option>
+								<option value="to">TO</option>
+							</select>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="name" class="form-label">Name<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input id="editname" type="text" class="form-control" name="name" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="address1" class="form-label">Address 1<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input id="editaddress1" type="text" class="form-control" name="address1" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="address2" class="form-label">Address 2</label>
+						</div>
+						<div class="col-10">
+							<input id="editaddress2" type="text" class="form-control" name="address2" autocomplete="off">
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="address3" class="form-label">Address 3</label>
+						</div>
+						<div class="col-10">
+							<input id="editaddress3" type="text" class="form-control" name="address3" autocomplete="off">
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="city" class="form-label">City<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input id="editcity" type="text" class="form-control" name="city" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="state" class="form-label">State<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input id="editstate" type="text" class="form-control" name="state" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="postalCode" class="form-label">Postal Code<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<input id="editpostalCode" type="text" class="form-control" name="postalCode" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="companyName" class="form-label">Company Name</label>
+						</div>
+						<div class="col-10">
+							<input id="editcompanyName" type="text" class="form-control" name="companyName" autocomplete="off">
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="phone" class="form-label">Phone</label>
+						</div>
+						<div class="col-10">
+							<input id="editphone" type="phone" class="form-control" name="phone" autocomplete="off">
+						</div>
+					</div>
+					<div class="row align-items-center mb-1">
+						<div class="col-2">
+							<label for="country" class="form-label">Country<small>*</small></label>
+						</div>
+						<div class="col-10">
+							<select id="editcountry" class="form-select" name="country" required>
+								<option value="US">United States</option>
+								<option value="CA">Canada</option>
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer mt-5">
+						<button id="saveTemplateBtn" type="submit" class="btn btn-primary mx-auto w-25">Save Template</button>
+						<a id="deleteTemplateBtn" role="button" class="btn btn-danger mx-auto w-25">Delete Template</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Add Template -->

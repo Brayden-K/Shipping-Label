@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Templates{% endblock %}
+{% block content %}
+    <section id="templates">
+        <div class="container">
+            <div class="card from">
+                <div class="card-title">
+                    <div class="row">
+                        <div class="col-6 text-primary display-6 align-self-center">
+                            Templates
+                        </div>
+                        <div class="col-6 align-self-center text-end">
+                            <a data-bs-toggle="modal" data-bs-target="#addTemplate" class="btn btn-primary w-50" href="#" role="button">Add Template</a>
+                        </div>
+                    </div>
+                </div>
+                {% if templates %}
+                    <table id="TemplateTable" class="display table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Address 1</th>
+                                <th>Address 2</th>
+                                <th>Address 3</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Postal Code</th>
+                                <th>Company Name</th>
+                                <th>Phone</th>
+                                <th>Country</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for template in templates %}
+                                <tr style="cursor: pointer;" onclick="viewTemplate({{template.id}})">
+                                    <td>{{template.name}}</td>
+                                    <td>{{template.type.upper()}}</td>
+                                    <td>{{template.address1}}</td>
+                                    <td>{{template.address2}}</td>
+                                    <td>{{template.address3}}</td>
+                                    <td>{{template.city}}</td>
+                                    <td>{{template.state}}</td>
+                                    <td>{{template.postalCode}}</td>
+                                    <td>{{template.companyName}}</td>
+                                    <td>{{template.phone}}</td>
+                                    <td>{{template.country}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="lead text-center">
+                        <p>You do not have any <b>from</b> templates.</p>
+                        <button type="button" class="btn btn-primary">Add Template</button>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% include 'modules/templateModals.html' %}
+    </section>
+{% endblock %}

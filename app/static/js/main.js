@@ -1,5 +1,11 @@
 setTimeout(fade_out, 5000);
 
+$(document).ready(function () {
+    $('#TemplateTable').DataTable({
+        responsive: true,
+    });
+});
+
 $(window).ready(function () {
 	if (document.location.pathname != '/portal' && document.location.pathname != '/request') {
 			try {
@@ -109,4 +115,48 @@ async function canSubmitSignUp(captcha=false) {
 
 async function captchaRegisterCallback(tes) {
 	canSubmitSignUp()
+}
+
+async function viewTemplate(id) {
+	let name = document.getElementById('editname');
+	let address1 = document.getElementById('editaddress1');
+	let type = document.getElementById('edittype');
+	let address2 = document.getElementById('editaddress2');
+	let address3 = document.getElementById('editaddress3');
+	let city = document.getElementById('editcity');
+	let state = document.getElementById('editstate');
+	let postalCode = document.getElementById('editpostalCode');
+	let companyName = document.getElementById('editcompanyName');
+	let phone = document.getElementById('editphone');
+	let country = document.getElementById('editcountry');
+	let idInput = document.getElementById('idEditInput');
+	$('#deleteTemplateBtn').click(function(){
+	  location.href = `${window.location.protocol}//${window.location.host}/deleteTemplate?id=${id}`;
+	});
+	var editTemplate = new bootstrap.Modal(document.getElementById('editTemplate'), {
+  	keyboard: true,
+  	focus: true,
+  	backdrop: true
+	});
+	data = {'action': 'getTemplate', 'id': id}
+	res = await sendPost(data);
+  if (res['success']) {
+  	name.value = res['template']['name'];
+  	idInput.value = id;
+		address1.value = res['template']['address1'];
+		address2.value = res['template']['address2'];
+		address3.value = res['template']['address3'];
+		city.value = res['template']['city'];
+		state.value = res['template']['state'];
+		postalCode.value = res['template']['postalCode'];
+		companyName.value = res['template']['companyName'];
+		phone.value = res['template']['phone'];
+		type.placeholder = res['template']['type'];
+		type.value = res['template']['type'];
+		country.placeholder = res['template']['country'];
+		country.value = res['template']['country']
+    editTemplate.show()
+  } else {
+      sendMessage('You do not own this template.');
+  }
 }

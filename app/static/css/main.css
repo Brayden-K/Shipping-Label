@@ -11654,42 +11654,6 @@ textarea.form-control-lg {
   fill: #3D0A91;
 }
 
-.ONE {
-  background-color: #daddeb;
-}
-
-.TWO {
-  background-color: #b4bbd7;
-}
-
-.THREE {
-  background-color: #8f99c3;
-}
-
-.FOUR {
-  background-color: #6977af;
-}
-
-.FIVE {
-  background-color: #44559b;
-}
-
-.SIX {
-  background-color: #36447c;
-}
-
-.SEVEN {
-  background-color: #29335d;
-}
-
-.EIGHT {
-  background-color: #1b223e;
-}
-
-.NINE {
-  background-color: #0e111f;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -11784,6 +11748,7 @@ html {
 
 #dashboard {
   min-height: calc(100vh - 90px);
+  overflow: visible;
   margin-top: 90px;
 }
 #dashboard .alert-dashboard-message {
@@ -11909,6 +11874,14 @@ html {
 
 .form-control:disabled {
   background-color: #0e111f;
+}
+
+#order, #templates {
+  margin-top: 100px;
+}
+#order .card, #templates .card {
+  margin-bottom: 20px;
+  padding: 30px;
 }
 
 /*# sourceMappingURL=main.css.map */

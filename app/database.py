@@ -19,22 +19,53 @@ class MySQL:
                 connection.commit()
             return result
 
-    def GetBTCPayClient(self):
+    def GetTicketsById(self, userId):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
         with connection:
             with connection.cursor() as cursor:
-                cursor.execute(f"SELECT btcPayClient from settings")
+                sql = "SELECT * from tickets WHERE ownerId=%s"
+                cursor.execute(sql, (userId))
+                result = cursor.fetchall()
+                connection.commit()
+            return result
+
+    def GetTemplates(self, username):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from templates WHERE ownerId=%s"
+                cursor.execute(sql, (username))
+                result = cursor.fetchall()
+                connection.commit()
+            return result
+
+    def DeleteTemplateById(self, id):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM templates WHERE id=%s"
+                cursor.execute(sql, (id))
+                connection.commit()
+
+    def GetTemplateById(self, templateId):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from templates WHERE id=%s"
+                cursor.execute(sql, (templateId))
                 result = cursor.fetchone()
                 connection.commit()
-            return result['btcPayClient']
+            return result
 
-    def SetBtcPayClient(self, btcPayClient):
+    def GetActiveTicketsById(self, userId):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
         with connection:
             with connection.cursor() as cursor:
-                sql = "UPDATE settings SET btcPayClient=%s"
-                result = cursor.execute(sql, (btcPayClient))
+                sql = "SELECT * from tickets WHERE ownerId=%s AND complete=%s"
+                cursor.execute(sql, (userId, False))
+                result = cursor.fetchall()
                 connection.commit()
+            return result
 
     def GetLogin(self, email, password):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
@@ -56,6 +87,14 @@ class MySQL:
                 connection.commit()
             return result
 
+    def AddBalanceToUser(self, email, amount):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "UPDATE users SET balance = balance + %s WHERE email=%s"
+                cursor.execute(sql, (amount, email))
+                connection.commit()
+
     def Insert(self, table, insert):
         keys = ', '.join([f"{k}" for k in insert.keys()])
         values = ', '.join([f"%s" for v in insert.values()])
@@ -74,6 +113,30 @@ class MySQL:
             with connection.cursor() as cursor:
                 sql= f"UPDATE settings SET {string}"
                 newList = list(settings.values())
+                cursor.execute(sql, tuple(newList))
+                connection.commit()
+                print(cursor._last_executed)
+
+    def UpdateTicket(self, ticketId, data):
+        string = ', '.join([f"{i} = %s" for i in data.keys()])
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql= f"UPDATE tickets SET {string} WHERE id=%s"
+                newList = list(data.values())
+                newList.append(ticketId)
+                cursor.execute(sql, tuple(newList))
+                connection.commit()
+                print(cursor._last_executed)
+
+    def UpdateTemplate(self, templateId, data):
+        string = ', '.join([f"{i} = %s" for i in data.keys()])
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql= f"UPDATE templates SET {string} WHERE id=%s"
+                newList = list(data.values())
+                newList.append(templateId)
                 cursor.execute(sql, tuple(newList))
                 connection.commit()
                 print(cursor._last_executed)

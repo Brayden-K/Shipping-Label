@@ -3,7 +3,6 @@ from app import app
 from app.decorators import login_required
 from app.errors import page_not_found, webhook
 import time, os
-from discord_webhook import DiscordWebhook
 from pprint import pprint
 
 @app.route('/')

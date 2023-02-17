@@ -26,16 +26,16 @@
 						<a class="nav-link" href="{{url_for('dashboard')}}"><i class="fa fa-solid fa-fw fa-lg fa-home"></i> Dashboard</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="fa-solid fa-lg fa-cart-shopping"></i> Order Now</a>
+						<a class="nav-link" href="{{url_for('order')}}"><i class="fa-solid fa-lg fa-cart-shopping"></i> Order Now</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="fa-solid fa-lg fa-list"></i> My Orders</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="fa-solid fa-lg fa-coins"></i> Deposit</a>
+						<a data-bs-toggle="modal" data-bs-target="#depositModal" class="nav-link" href="#"><i class="fa-solid fa-lg fa-coins"></i> Deposit</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="fa-solid fa-lg fa-mail-bulk"></i> Templates</a>
+						<a class="nav-link" href="{{url_for('templates')}}"><i class="fa-solid fa-lg fa-mail-bulk"></i> Templates</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="fa-solid fa-lg fa-circle-question"></i> FAQ</a>

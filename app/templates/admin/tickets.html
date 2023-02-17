@@ -1,0 +1,41 @@
+{% extends "admin/admin.html" %}
+{% block admincontent %}
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Owner</th>
+					<th scope="col">Subject</th>
+					<th scope="col">Description</th>
+					<th scope="col">Priority</th>
+					<th scope="col">Progress</th>
+					<th scope="col">Created</th>
+					<th scope="col">Complete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for ticket in tickets %}
+					<tr>
+						<td scope="col" style="width: 25px;">{{ticket.id}}</td>
+						<td scope="col" style="width: 25px;">{{ticket.ownerId}}</td>
+						<td scope="col">{{ticket.subject}}</td>
+						<td scope="col">{{ticket.description}}</td>
+						<td scope="col">{{ticket.priority}}</td>
+						<td style="width: 200px;">
+							<div class="progress" style="height: 20px;">
+								<div id="progress{{ticket.id}}"class="progress-bar progress-bar-striped progress-bar-animated text-white" role="progressbar" aria-label="Project Progress" aria-valuenow="{{ticket.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ticket.progress}}%;">{{ticket.progress}}%</div>
+							</div>
+							<div>
+								<!-- <input type="range" id="progressSlider{{ticket.id}}" name="progressSlider{{ticket.id}}" min="1" max="100" value="{{ticket.progress}}" class="form-range form-range-lg text-white" oninput="fixRange({{ticket.id}})" onchange="updateProgress({{ticket.id}})"> -->
+								<input type="range" id="progressSlider{{ticket.id}}" name="progressSlider{{ticket.id}}" min="1" max="100" value="{{ticket.progress}}" class="form-range form-range-lg text-white" oninput="fixRange({{ticket.id}})" onchange="updateProgress({{ticket.id}})">
+							</div>
+						</td>
+						<td style="width: 200px;">{{ticket.created}}</td>
+						<td class="text-center">{% if ticket.complete %}<i id="completeIcon{{ticket.id}}" onclick="updateTicketComplete(0, {{ticket.id}})" style="cursor: pointer;" class="fa-thin fa-check text-success"></i>{% else %}<i id="completeIcon{{ticket.id}}" onclick="updateTicketComplete(1, {{ticket.id}})" style="cursor: pointer;" class="fa-thin fa-x text-danger"></i>{% endif %}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

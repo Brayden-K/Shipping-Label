@@ -8,3 +8,5 @@ from app import login
 from app import api
 from app import dashboard
 from app import admin
+from app import depositHandler
+from app import order

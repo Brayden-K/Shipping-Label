@@ -31,9 +31,27 @@ def api():
 
 			app.db.UpdateSettings(data)
 			return {'success': True}
-			
+
+		case 'getTemplate':
+			data = request.form.to_dict()
+			del data['action']
+			template = app.db.GetTemplateById(data['id'])
+			if template['ownerId'] == app.db.GetUserByEmail(session['username'])['id']:
+				return {'success': True, 'template': template}
+			else:
+				return {'success': False, 'msg': 'You do not own this template.'}
+
+		case 'updateTicket':
+			data = request.form.to_dict()
+			ticketId = data['id']
+			del data['action']
+			del data['id']
+			app.db.UpdateTicket(ticketId, data)
+			return {'success': True}
+
 		case _:
 			return {'success': False, 'msg': 'Invalid action specified.'}
+
 
 @app.route('/api/callback', methods=['POST'])
 def callbackapi():

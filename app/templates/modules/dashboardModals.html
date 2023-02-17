@@ -1,0 +1,94 @@
+<!-- Ticket Modal -->
+<div class="modal modal-xl fade align-items-middle" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="ticketModalLabel">Tickets</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{% if tickets %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Subject</th>
+								<th scope="col">Description</th>
+								<th scope="col">Priority</th>
+								<th scope="col">Progress</th>
+								<th scope="col">Created</th>
+								<th class="text-center" scope="col">Complete</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for ticket in activeTickets|sort(attribute='priority', reverse=True) %}
+								<tr>
+									<td>{{ticket.subject}}</td>
+									<td>{{ticket.description}}</td>
+									<td>{{ticket.priority.capitalize()}}</td>
+									<td style="width: 200px;">
+										<div class="progress" style="height: 20px;">
+											<div class="progress-bar progress-bar-striped progress-bar-animated text-black" role="progressbar" aria-label="Project Progress" aria-valuenow="{{ticket.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{ticket.progress}}%;">{{ticket.progress}}%</div>
+										</div>
+									</td>
+									<td style="width: 200px;">{{ticket.created}}</td>
+									<td class="text-center">{% if ticket.complete %}<i class="fa-thin fa-check text-success"></i>{% else %}<i class="fa-thin fa-x text-danger"></i>{% endif %}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% else %}
+					You have no tickets.
+				{% endif %}
+				<button data-bs-toggle="modal" data-bs-target="#createTicketModal" type="button" class="btn btn-primary">Create Support Ticket</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Ticket Modal -->
+<!-- Create Ticket Modal -->
+<div class="modal fade align-items-middle" id="createTicketModal" tabindex="-1" aria-labelledby="createTicketModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="createTicketModalLabel">Create Ticket</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{url_for('dashboard')}}" method="post">
+					<input type="text" id="createTicket" name="createTicket" value="true" hidden>
+					<input type="text" id="ownerId" name="ownerId" value="{{user.id}}" hidden>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="md-form mb-0">
+								<label for="subject" class="">Subject</label>
+								<input type="text" name="subject" class="form-control" autocomplete="off" required>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="md-form mb-0">
+								<label for="priority" class="">Priority</label>
+								<select name="priority" id="priority" class="form-select" aria-label="Priority" required>
+									<option value="low">Low</option>
+									<option value="medium">Medium</option>
+									<option value="urgent">Urgent</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="md-form">
+								<label for="description">Description</label>
+								<textarea type="text" id="description" name="description" rows="4" class="form-control md-textarea" autocomplete="off" required></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary mx-auto">Submit Ticket</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Create Ticket Modal -->
