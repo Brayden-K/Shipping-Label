@@ -5,3 +5,42 @@
 		padding: 30px;
 	}
 }
+
+#order {
+	.provider {
+		.card {
+			cursor: pointer;
+			&:hover {
+				background-color: var(--bs-primary);
+				color: white;
+			}
+		}
+		.active {
+			background-color: var(--bs-primary);
+			color: white;
+		}
+	}
+	#template {
+		.yes {
+			&:hover {
+				color: var(--bs-success);
+			}
+		}
+	}
+	.from-form {
+		border-right: 2px solid var(--bs-border-color-translucent);
+	}
+	#services {
+		.card {
+			cursor: pointer;
+			&:hover {
+				background-color: var(--bs-primary);
+				color: white;
+			}
+		}
+		.activeService {
+			background-color: var(--bs-primary);
+			color: white;
+		}
+	}
+}

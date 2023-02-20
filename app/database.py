@@ -19,6 +19,26 @@ class MySQL:
                 connection.commit()
             return result
 
+    def GetProviders(self):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from providers"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                connection.commit()
+            return result
+
+    def GetServices(self, providerId):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from services WHERE provider=%s"
+                cursor.execute(sql, (providerId))
+                result = cursor.fetchall()
+                connection.commit()
+            return result
+
     def GetTicketsById(self, userId):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
         with connection:

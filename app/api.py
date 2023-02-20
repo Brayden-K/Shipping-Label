@@ -41,6 +41,12 @@ def api():
 			else:
 				return {'success': False, 'msg': 'You do not own this template.'}
 
+		case 'getServices':
+			data = request.form.to_dict()
+			del data['action']
+			services = app.db.GetServices(data['id'])
+			return {'success': True, 'services': services}
+
 		case 'updateTicket':
 			data = request.form.to_dict()
 			ticketId = data['id']

@@ -11884,4 +11884,33 @@ html {
   padding: 30px;
 }
 
+#order .provider .card {
+  cursor: pointer;
+}
+#order .provider .card:hover {
+  background-color: var(--bs-primary);
+  color: white;
+}
+#order .provider .active {
+  background-color: var(--bs-primary);
+  color: white;
+}
+#order #template .yes:hover {
+  color: var(--bs-success);
+}
+#order .from-form {
+  border-right: 2px solid var(--bs-border-color-translucent);
+}
+#order #services .card {
+  cursor: pointer;
+}
+#order #services .card:hover {
+  background-color: var(--bs-primary);
+  color: white;
+}
+#order #services .activeService {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
 /*# sourceMappingURL=main.css.map */

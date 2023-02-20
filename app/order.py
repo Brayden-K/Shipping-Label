@@ -8,7 +8,9 @@ from pprint import pprint
 @app.route('/order')
 @login_required
 def order():
-    return render_template('order.html')
+	templates = app.db.GetTemplates(app.db.GetUserByEmail(session['username'])['id'])
+	providers = app.db.GetProviders()
+	return render_template('order.html', templates=templates, providers=providers)
 
 @app.route('/templates', methods=['GET', 'POST'])
 @login_required
