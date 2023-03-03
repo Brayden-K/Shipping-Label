@@ -1,7 +1,8 @@
 from flask import render_template, jsonify, abort, request, redirect, session, flash, url_for
 from app import app
-import requests, datetime
+import requests, datetime, random, string, datetime, urllib.parse
 from pprint import pprint
+from app.mail import sendMail
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -105,3 +106,70 @@ def checkCaptcha(resp):
 		return True
 	else:
 		return False
+
+@app.route('/recoverPassword', methods=["GET", "POST"])
+def recoverPassword():
+	if request.method == 'GET':
+		# Check if code exists in url
+		if not 'code' in request.args:
+			return redirect(abort(404))
+
+		# Check if email exists in url
+		if not 'email' in request.args:
+			return redirect(abort(404))
+		
+		# Handle Code
+		code = request.args.get('code')
+		email = request.args.get('email')
+		recovery = app.db.GetRecoveryInfo(email, code)
+
+		if not recovery:
+			return redirect(abort(404))
+
+		newPassword = generate_random_string(15)
+		app.db.UpdateUserPassword(email, newPassword)
+		app.db.MarkRecovered(email, code)
+		sendMail(email, 'Your temporary password', password=newPassword)
+
+		# Redirect to index
+		flash('Password sent to email.')
+		return redirect(url_for('index'))
+
+		# Data doesn't match database
+		if not recovery:
+			return redirect(abort(404))
+
+		user = app.db.GetUserByEmail(email)
+
+		# Mark code as recovered
+		app.db.MarkRecovered(email, code)
+		return user
+		
+	# Check if email exists in form
+	if not 'recoverUsername' in request.form:
+		return {'success': False, 'msg': 'No email provided'}
+
+	# Check if email exists in database
+	if not app.db.GetUserByEmail(request.form.get('recoverUsername')):
+		return {'success': False, 'msg': 'Email does not exist.'}
+
+	# Generate random recovery code
+	code = generate_random_string(20)
+
+	# Database log insert
+	data = {
+		'email': request.form.get('recoverUsername'),
+		'code': code,
+		'created': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+	}
+	app.db.Insert('recovery', data)
+	link = urllib.parse.unquote('http://' + request.host + url_for('recoverPassword', code=code, email=request.form.get('recoverUsername')))
+	sendMail(request.form.get('recoverUsername'), 'Recover your password', recoveryLink=link, password=None)
+
+	flash('Check your email to recover your password.')
+	return redirect(url_for('index'))
+
+def generate_random_string(length):
+    letters_and_digits = string.ascii_letters + string.digits
+    result_str = ''.join(random.choice(letters_and_digits) for i in range(length))
+    return result_str

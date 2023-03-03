@@ -5,13 +5,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 class sendMail:
-	def __init__(self, RECIPIENT, subject, emailType):
+	def __init__(self, RECIPIENT, subject, recoveryLink=None, password=None):
 		self.RECIPIENT = RECIPIENT
-		self.username = username
-		self.password = password
 		self.subject = subject
-		self.emailType = emailType
-		self.setupHTML()
+		if recoveryLink:
+			self.setupSendCode(recoveryLink)
+		if password:
+			self.setupSendPassword(password)
 		self.send()
 
 	def send(self):
@@ -27,7 +27,7 @@ class sendMail:
 		PORT = settings['emailPort']
 		
 		# The subject line of the email.
-		SUBJECT = settings['emailSubject']
+		SUBJECT = self.subject
 		
 		# The HTML body of the email.
 		
@@ -52,5 +52,8 @@ class sendMail:
 		except SMTPException as e:
 		    print("Error: ", e)
 
-	def setupHTML(self):
-		self.BODY_HTML = """<h1>Hello</h1>"""
+	def setupSendCode(self, link):
+		self.BODY_HTML = f"<h1>Password Recovery</h1><br>Click this link to recover your password. <a href='{link}'>{link}</a>"
+
+	def setupSendPassword(self, password):
+		self.BODY_HTML = f"<h1>Your new password</h1><br>Your temporary password is here. Please change this ASAP.<br><code>{password}</code>"

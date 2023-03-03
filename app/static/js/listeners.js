@@ -16,3 +16,12 @@ try {
     
 }
 
+// Change Password
+document.getElementById("changePasswordSubmit").addEventListener("click", function(){
+    changePassword();
+});
+
+// Change User Settings
+document.getElementById("editAccountSettingsBtn").addEventListener("click", function(){
+    saveUserSettings();
+});

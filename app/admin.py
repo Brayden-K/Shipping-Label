@@ -17,3 +17,8 @@ def admin():
 def tickets():
 	tickets = app.db.GetAllTickets()
 	return render_template('admin/tickets.html', tickets=tickets)
+
+@app.route('/admin/members')
+def members():
+	members = app.db.GetAllMembers()
+	return render_template('admin/members.html', members=members)

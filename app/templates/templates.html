@@ -19,6 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Name</th>
                                 <th>Type</th>
                                 <th>Address 1</th>
                                 <th>Address 2</th>
@@ -26,7 +27,6 @@
                                 <th>City</th>
                                 <th>State</th>
                                 <th>Postal Code</th>
-                                <th>Company Name</th>
                                 <th>Phone</th>
                                 <th>Country</th>
                             </tr>
@@ -34,6 +34,7 @@
                         <tbody>
                             {% for template in templates %}
                                 <tr style="cursor: pointer;" onclick="viewTemplate({{template.id}})">
+                                    <td>{{template.companyName}}</td>
                                     <td>{{template.name}}</td>
                                     <td>{{template.type.upper()}}</td>
                                     <td>{{template.address1}}</td>
@@ -42,7 +43,6 @@
                                     <td>{{template.city}}</td>
                                     <td>{{template.state}}</td>
                                     <td>{{template.postalCode}}</td>
-                                    <td>{{template.companyName}}</td>
                                     <td>{{template.phone}}</td>
                                     <td>{{template.country}}</td>
                                 </tr>

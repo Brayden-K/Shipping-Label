@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Orders{% endblock %}
+{% block content %}
+	<section id="orders">
+		<div class="container">
+			<div class="card">
+				<table id="orderTable" class="table table-striped" style="width:100%">
+					<thead>
+						<tr>
+							<th>OrderID</th>
+							<th>Tracking #</th>
+							<th>Created</th>
+							<th>Label</th>
+							<th>Receipt</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for order in orders %}
+							<tr>
+								<td>{{order.orderId}}</td>
+								<td>{{order.tracking}}</td>
+								<td>
+									<div class="d-flex">
+										{{order.created.strftime('%d-%m-%Y')}}
+										{{order.created.strftime('%H:%M:%S')}}
+										
+									</div>
+								</td>
+								<td>
+									<a onclick="setupViewModal('View Label', '{{order.label}}')" class="btn btn-primary" href="#" role="button">View</a>
+								</td>
+								<td>
+									{% if order.receipt %}
+										<a onclick="setupViewModal('View Receipt', '{{order.receipt}}')" class="btn btn-primary" href="#" role="button">View</a>
+									{% endif %}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+	{% include 'modules/viewLabel.html' %}
+	<script type="text/javascript" src="../static/js/order.js"></script>
+{% endblock %}

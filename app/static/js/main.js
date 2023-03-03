@@ -160,3 +160,40 @@ async function viewTemplate(id) {
       sendMessage('You do not own this template.');
   }
 }
+
+async function changePassword() {
+	let submitBtn = document.getElementById('changePasswordSubmitBtn');
+	data = {
+			'action': 'changePassword',
+			'currentPassword': document.getElementById('currentPassword').value,
+			'newPassword': document.getElementById('newPassword').value,
+			'newRepeatPassword': document.getElementById('newRepeatPassword').value,
+		}
+	res = await sendPost(data);
+  if (res['success']) {
+  	sendMessage('Password has been changed');
+  	document.getElementById('currentPassword').value = '';
+		document.getElementById('newPassword').value = '';
+		document.getElementById('newRepeatPassword').value = '';
+  	$('#changePasswordModal').modal('hide');
+  } else {
+  	sendMessage(res['msg']);
+  }
+}
+
+async function saveUserSettings() {
+	let submitBtn = document.getElementById('changePasswordSubmitBtn');
+	data = {
+			'action': 'saveUserSettings',
+			'email': document.getElementById('editEmail').value,
+			'discord': document.getElementById('editDiscord').value,
+			'telegram': document.getElementById('editTelegram').value,
+		}
+	res = await sendPost(data);
+  if (res['success']) {
+  	sendMessage('User settings have been updated.');
+  	$('#userSettingsModal').modal('hide');
+  } else {
+  	sendMessage(res['msg']);
+  }
+}

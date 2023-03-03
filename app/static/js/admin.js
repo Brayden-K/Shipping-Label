@@ -12,6 +12,18 @@ document.getElementById('showDashboardMessage').addEventListener('change', funct
     }
 });
 
+$(document).ready(function () {
+    $('#adminTicketTable').DataTable({
+        responsive: true,
+    });
+});
+
+$(document).ready(function () {
+    $('#adminUsersTable').DataTable({
+        responsive: true,
+    });
+});
+
 document.getElementById("saveSettingsBtn").addEventListener("click", function(){
     saveSettings();
 });

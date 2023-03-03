@@ -19,6 +19,27 @@ class MySQL:
                 connection.commit()
             return result
 
+    def GetAllMembers(self):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from users"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                connection.commit()
+            return result
+
+    def SaveUserSettings(self, userId, data):
+        string = ', '.join([f"{i} = %s" for i in data.keys()])
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql= f"UPDATE users SET {string} WHERE id=%s"
+                newList = list(data.values())
+                newList.append(userId)
+                cursor.execute(sql, tuple(newList))
+                connection.commit()
+
     def GetProviders(self):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
         with connection:
@@ -29,6 +50,24 @@ class MySQL:
                 connection.commit()
             return result
 
+    def GetRecoveryInfo(self, email, code):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from recovery WHERE email=%s AND code=%s"
+                cursor.execute(sql, (email, code))
+                result = cursor.fetchone()
+                connection.commit()
+            return result
+
+    def MarkRecovered(self, email, code):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "UPDATE recovery SET recovered = %s WHERE email=%s AND code=%s"
+                cursor.execute(sql, (1, email, code))
+                connection.commit()
+
     def GetServices(self, providerId):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
         with connection:
@@ -36,6 +75,16 @@ class MySQL:
                 sql = "SELECT * from services WHERE provider=%s"
                 cursor.execute(sql, (providerId))
                 result = cursor.fetchall()
+                connection.commit()
+            return result
+
+    def GetServiceById(self, serviceId):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from services WHERE id=%s"
+                cursor.execute(sql, (serviceId))
+                result = cursor.fetchone()
                 connection.commit()
             return result
 
@@ -107,11 +156,37 @@ class MySQL:
                 connection.commit()
             return result
 
+    def GetOrdersByOwnerId(self, ownerId):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from orders WHERE ownerId=%s"
+                cursor.execute(sql, (ownerId))
+                result = cursor.fetchall()
+                connection.commit()
+            return result
+
     def AddBalanceToUser(self, email, amount):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
         with connection:
             with connection.cursor() as cursor:
                 sql = "UPDATE users SET balance = balance + %s WHERE email=%s"
+                cursor.execute(sql, (amount, email))
+                connection.commit()
+
+    def UpdateUserPassword(self, email, password):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "UPDATE users SET password = %s WHERE email=%s"
+                cursor.execute(sql, (password, email))
+                connection.commit()
+
+    def RemoveBalanceFromUser(self, email, amount):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "UPDATE users SET balance = balance - %s WHERE email=%s"
                 cursor.execute(sql, (amount, email))
                 connection.commit()
 

@@ -25,8 +25,8 @@ def deposit():
         'name': f"{settings['siteName']} - Deposit",
         'description': f'Deposit ${amount} for your {settings["siteName"]} account.',
         'price': f'{amount}',
-        'successUrl':'http://localhost:5000',
-        'cancelUrl':'http://localhost:5000',
+        'successUrl':request.host_url,
+        'cancelUrl':request.host_url,
         'metadata': {
             'email': session['username'],
             'amount': amount

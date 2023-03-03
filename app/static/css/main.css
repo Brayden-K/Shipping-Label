@@ -11876,10 +11876,10 @@ html {
   background-color: #0e111f;
 }
 
-#order, #templates {
+#order, #templates, #orders {
   margin-top: 100px;
 }
-#order .card, #templates .card {
+#order .card, #templates .card, #orders .card {
   margin-bottom: 20px;
   padding: 30px;
 }
@@ -11911,6 +11911,15 @@ html {
 #order #services .activeService {
   background-color: var(--bs-primary);
   color: white;
+}
+
+#viewImage {
+  max-height: 80vh;
+}
+
+.small {
+  font-size: 10px;
+  vertical-align: top;
 }
 
 /*# sourceMappingURL=main.css.map */

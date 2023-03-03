@@ -11,6 +11,7 @@ from pprint import pprint
 def dashboard():
     if request.method == 'GET':
         user = app.db.GetUserByEmail(session['username'])
+        print(session)
         tickets = app.db.GetTicketsById(user['id'])
         activeTickets = app.db.GetActiveTicketsById(user['id'])
         return render_template('dashboard.html', tickets=tickets, activeTickets=activeTickets)

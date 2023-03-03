@@ -1,0 +1,40 @@
+{% extends "admin/admin.html" %}
+{% block admincontent %}
+	<table id="adminUsersTable" class="table table-striped" style="width:100%">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Email</th>
+				<th>Balance</th>
+				<th>Joined</th>
+				<th>Discord</th>
+				<th>Telegram</th>
+				<th>Banned</th>
+				<th>Options</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for member in members %}
+				<tr>
+					<td>{{member.id}}</td>
+					<td>{{member.email}}</td>
+					<td>
+						{% if member.balance %}
+							{{ member.balance }}
+						{% else %}
+							0
+						{% endif %}
+					</td>
+					<td>{{member.joined}}</td>
+					<td>{{member.discord}}</td>
+					<td>{{member.telegram}}</td>
+					<td>{{member.banned}}</td>
+					<td>
+						<button type="button" class="btn btn-primary">Ban</button>
+						<button type="button" class="btn btn-danger">Delete</button>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

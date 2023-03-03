@@ -16,8 +16,15 @@
 						<label for="password" class="form-label">Password</label>
 						<input type="password" class="form-control form-control-lg" name="password" autocomplete="off" id="password" required>
 					</div>
-					<div class="modal-footer">
-						<button id="loginSubmitBtn" type="submit" class="btn btn-primary mx-auto w-25">Login</button>
+					<div>
+						<div class="row">
+							<div class="col-6">
+								<button id="loginSubmitBtn" type="submit" class="btn btn-primary mx-auto w-100">Login</button>
+							</div>
+							<div class="col-6">
+								<button data-bs-toggle="modal" data-bs-target="#recoverPasswordModal" class="btn btn-outline-primary mx-auto w-100">Recover Password</button>
+							</div>
+						</div>
 					</div>
 				</form>
 			</div>
@@ -48,23 +55,23 @@
 						<input type="password" class="form-control form-control-lg" name="confirmPassword" autocomplete="off" id="registerConfirmPassword" required>
 					</div>
 					{% if settings.requireCaptcha %}
-					<div class="captcha d-flex justify-content-center m-3">
-						<script type="text/javascript">
-						let useCaptcha = true;
-						var onloadCallback = function() {
-						grecaptcha.render('html_element', {
-						'sitekey' : '6LezZi8kAAAAAK0zr1Q37h3wDErCQ3Xe1OsCe_zG',
-						'callback' : captchaRegisterCallback
-						});
-						};
-						</script>
-						<div id="html_element"></div>
-						<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-						async defer>
-						</script>
-					</div>
+						<div class="captcha d-flex justify-content-center m-3">
+							<script type="text/javascript">
+							let useCaptcha = true;
+							var onloadCallback = function() {
+							grecaptcha.render('html_element', {
+							'sitekey' : '6LezZi8kAAAAAK0zr1Q37h3wDErCQ3Xe1OsCe_zG',
+							'callback' : captchaRegisterCallback
+							});
+							};
+							</script>
+							<div id="html_element"></div>
+							<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+							async defer>
+							</script>
+						</div>
 					{% else %}
-					<script>let useCaptcha = false;</script>
+						<script>let useCaptcha = false;</script>
 					{% endif %}
 					<div class="modal-footer">
 						<button id="registerSubmitBtn" type="submit" class="btn btn-primary mx-auto w-25" disabled>Sign Up</button>
@@ -75,6 +82,29 @@
 	</div>
 </div>
 <!-- End Registration Modal -->
+<!-- Recover Password Modal -->
+<div class="modal fade align-items-middle" id="recoverPasswordModal" tabindex="-1" aria-labelledby="recoverPasswordModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="recoverPasswordModalLabel">Recover Password</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="{{url_for('recoverPassword')}}" method="post">
+					<div class="mb-3">
+						<label for="recoverUsername" class="form-label">Email</label>
+						<input type="email" class="form-control form-control-lg" name="recoverUsername" autocomplete="off" id="recoverUsername" required>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-primary mx-auto w-100">Send Email</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Recover Password Modal -->
 <!-- Contact Modal -->
 <div class="modal fade align-items-middle" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -155,3 +185,61 @@
 	</div>
 </div>
 <!-- End Deposit Modal -->
+<!-- Change Password Modal -->
+<div class="modal fade align-items-middle" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="changePasswordModalLabel">Change Password</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="currentPassword" class="form-label">Current Password</label>
+					<input type="password" class="form-control form-control-lg" name="currentPassword" autocomplete="off" id="currentPassword" required>
+				</div>
+				<div class="mb-3">
+					<label for="newPassword" class="form-label">New Password</label>
+					<input type="password" class="form-control form-control-lg" name="newPassword" autocomplete="off" id="newPassword" required>
+				</div>
+				<div class="mb-3">
+					<label for="newRepeatPassword" class="form-label">Repeat New Password</label>
+					<input type="password" class="form-control form-control-lg" name="newRepeatPassword" autocomplete="off" id="newRepeatPassword" required>
+				</div>
+				<div class="modal-footer">
+					<button id="changePasswordSubmit" class="btn btn-primary mx-auto w-100">Change Password</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Change Password Modal -->
+<!-- Change Password Modal -->
+<div class="modal fade align-items-middle" id="userSettingsModal" tabindex="-1" aria-labelledby="userSettingsModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="userSettingsModalLabel">Settings</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div class="mb-3">
+					<label for="editEmail" class="form-label">Email</label>
+					<input type="email" class="form-control form-control-lg" name="editEmail" autocomplete="off" id="editEmail" value="{{user.email}}" required>
+				</div>
+				<div class="mb-3">
+					<label for="editDiscord" class="form-label">Discord</label>
+					<input type="text" class="form-control form-control-lg" name="editDiscord" autocomplete="off" id="editDiscord" value="{{user.discord}}">
+				</div>
+				<div class="mb-3">
+					<label for="editTelegram" class="form-label">Telegram</label>
+					<input type="text" class="form-control form-control-lg" name="editTelegram" autocomplete="off" id="editTelegram" value="{{user.telegram}}">
+				</div>
+				<div class="modal-footer">
+					<button id="editAccountSettingsBtn" class="btn btn-primary mx-auto w-100">Save Settings</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Change Password Modal -->

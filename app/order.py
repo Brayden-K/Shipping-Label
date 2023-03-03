@@ -64,3 +64,9 @@ def deleteTemplate():
 	app.db.DeleteTemplateById(request.args.get('id'))
 	flash('Template deleted.')
 	return redirect(url_for('templates'))
+
+@app.route('/orders')
+@login_required
+def orders():
+	orders = app.db.GetOrdersByOwnerId(app.db.GetUserByEmail(session['username'])['id'])
+	return render_template('orders.html', orders=orders)

@@ -1,4 +1,4 @@
-#order, #templates {
+#order, #templates, #orders {
 	margin-top: 100px;
 	.card {
 		margin-bottom: 20px;
@@ -43,4 +43,13 @@
 			color: white;
 		}
 	}
+}
+
+#viewImage {
+	max-height: 80vh;
+}
+
+.small {
+	font-size: 10px;
+	vertical-align:top;
 }
