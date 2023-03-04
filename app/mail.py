@@ -4,6 +4,7 @@ from smtplib import SMTP_SSL, SMTPException, SMTP
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import ssl
+import traceback
 
 class sendMail:
 	def __init__(self, RECIPIENT, subject, recoveryLink=None, password=None):
@@ -55,6 +56,7 @@ class sendMail:
 		
 		except SMTPException as e:
 			print("Error: ", e)
+			print(traceback.format_exc())
 
 	def setupSendCode(self, link):
 		self.BODY_HTML = f"<h1>Password Recovery</h1><br>Click this link to recover your password. <a href='{link}'>{link}</a>"
