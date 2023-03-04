@@ -12,9 +12,11 @@ document.getElementById('showDashboardMessage').addEventListener('change', funct
     }
 });
 
-document.getElementById("addBalanceBtn").addEventListener("click", function(){
-    addBalance();
-});
+try {
+    document.getElementById("addBalanceBtn").addEventListener("click", function(){
+        addBalance();
+    });
+} catch(e) {}
 
 $(document).ready(function () {
     $('#adminTicketTable').DataTable({
