@@ -116,6 +116,14 @@ class MySQL:
                 cursor.execute(sql, (id))
                 connection.commit()
 
+    def DeleteAccountById(self, id):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "DELETE FROM users WHERE id=%s"
+                cursor.execute(sql, (id))
+                connection.commit()
+
     def GetTemplateById(self, templateId):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
         with connection:
@@ -165,6 +173,22 @@ class MySQL:
                 result = cursor.fetchall()
                 connection.commit()
             return result
+
+    def BanAccount(self, id):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "UPDATE users SET banned = %s WHERE id=%s"
+                cursor.execute(sql, (1, id))
+                connection.commit()   
+
+    def UnbanAccount(self, id):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "UPDATE users SET banned = %s WHERE id=%s"
+                cursor.execute(sql, (0, id))
+                connection.commit()  
 
     def AddBalanceToUser(self, email, amount):
         connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
@@ -241,6 +265,16 @@ class MySQL:
         with connection:
             with connection.cursor() as cursor:
                 sql = "SELECT * from tickets"
+                cursor.execute(sql)
+                result = cursor.fetchall()
+                connection.commit()
+            return result
+
+    def GetAllOrders(self):
+        connection = pymysql.connect(host=self.host, user=self.username, password=self.password, database=self.database, cursorclass=pymysql.cursors.DictCursor)
+        with connection:
+            with connection.cursor() as cursor:
+                sql = "SELECT * from orders"
                 cursor.execute(sql)
                 result = cursor.fetchall()
                 connection.commit()

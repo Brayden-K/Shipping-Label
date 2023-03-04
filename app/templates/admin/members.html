@@ -28,10 +28,14 @@
 					<td>{{member.joined}}</td>
 					<td>{{member.discord}}</td>
 					<td>{{member.telegram}}</td>
-					<td>{{member.banned}}</td>
+					<td>{% if member.banned %}True{% else %}False{% endif %}</td>
 					<td>
-						<button type="button" class="btn btn-primary">Ban</button>
-						<button type="button" class="btn btn-danger">Delete</button>
+						{% if member.banned %}
+							<button type="button" onclick='if (confirm("Are you sure you want to unban {{member.email}}")) {location.href="{{url_for('adminUnbanAccount', id=member.id)}}";}' class="btn btn-primary">Unban</button>
+						{% else %}
+							<button type="button" onclick='if (confirm("Are you sure you want to ban {{member.email}}")) {location.href="{{url_for('adminBanAccount', id=member.id)}}";}' class="btn btn-primary">Ban</button>
+						{% endif %}
+						<button type="button" onclick='if (confirm("Are you sure you want to delete {{member.email}}")) {location.href="{{url_for('adminDeleteAccount', id=member.id)}}";}' class="btn btn-danger">Delete</button>
 					</td>
 				</tr>
 			{% endfor %}

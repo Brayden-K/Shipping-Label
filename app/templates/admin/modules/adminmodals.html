@@ -29,6 +29,9 @@
 						<button class="nav-link" id="user-settings-tab" data-bs-toggle="pill" data-bs-target="#user-settings" type="button" role="tab" aria-controls="user-settings" aria-selected="false">User Settings</button>
 					</li>
 					<li class="nav-item" role="presentation">
+						<button class="nav-link" id="user-settings-tab" data-bs-toggle="pill" data-bs-target="#mail-settings" type="button" role="tab" aria-controls="mail-settings" aria-selected="false">Mail Settings</button>
+					</li>
+					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="label-settings-tab" data-bs-toggle="pill" data-bs-target="#label-settings" type="button" role="tab" aria-controls="label-settings" aria-selected="false">Label Settings</button>
 					</li>
 				</ul>
@@ -136,6 +139,59 @@
 						</div>
 						<div class="modal-footer">
 							<button id="saveUserSettingsBtn" type="submit" class="btn btn-primary">Save Settings</button>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="mail-settings" role="tabpanel" aria-labelledby="mail-settings-tab" tabindex="0">
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="emailSender" class="form-label">Email Sender</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="emailSender" value="{{settings.emailSender}}">
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="emailSenderName" class="form-label">Email Sender Name</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="emailSenderName" value="{{settings.emailSenderName}}">
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="emailUsername" class="form-label">Email Username</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="emailUsername" value="{{settings.emailUsername}}">
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="emailPassword" class="form-label">Email Password</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="emailPassword" value="{{settings.emailPassword}}">
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="emailHost" class="form-label">Email Host</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="emailHost" value="{{settings.emailHost}}">
+							</div>
+						</div>
+						<div class="row align-items-center">
+							<div class="col-lg-2">
+								<label for="emailPort" class="form-label">Email Port</label>
+							</div>
+							<div class="col-lg-10">
+								<input type="text" class="form-control form-control-lg" id="emailPort" value="{{settings.emailPort}}">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="saveEmailSettingsBtn" type="submit" class="btn btn-primary">Save Settings</button>
 						</div>
 					</div>
 					<div class="tab-pane fade" id="label-settings" role="tabpanel" aria-labelledby="label-settings-tab" tabindex="0">

@@ -19,6 +19,12 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    $('#adminOrderTable').DataTable({
+        responsive: true,
+    });
+});
+
+$(document).ready(function () {
     $('#adminUsersTable').DataTable({
         responsive: true,
     });
@@ -29,6 +35,10 @@ document.getElementById("saveSettingsBtn").addEventListener("click", function(){
 });
 
 document.getElementById("saveUserSettingsBtn").addEventListener("click", function(){
+    saveSettings();
+});
+
+document.getElementById("saveEmailSettingsBtn").addEventListener("click", function(){
     saveSettings();
 });
 
@@ -46,6 +56,12 @@ async function saveSettings() {
     data['upsApiKey'] = document.getElementById('upsApiKey').value;
     data['fedexApiKey'] = document.getElementById('fedexApiKey').value;
     data['uspsApiKey'] = document.getElementById('uspsApiKey').value;
+    data['emailSender'] = document.getElementById('emailSender').value;
+    data['emailSenderName'] = document.getElementById('emailSenderName').value;
+    data['emailUsername'] = document.getElementById('emailUsername').value;
+    data['emailPassword'] = document.getElementById('emailPassword').value;
+    data['emailHost'] = document.getElementById('emailHost').value;
+    data['emailPort'] = document.getElementById('emailPort').value;
 
     res = await sendPost(data);
     if (res['success']) {
@@ -99,4 +115,32 @@ async function updateTicketComplete(complete, id) {
     } else {
         sendMessage('Something went wrong');
     }
+}
+
+async function setupAdminViewModal(msg, base64) {
+    let img = document.getElementById('viewImage');
+    img.src = "data:image/png;base64," + base64;
+    let title = document.getElementById('viewerModalLabel');
+    title.innerHTML = msg;
+    if (document.getElementById('printDiv')) {
+        document.getElementById('printDiv').remove()
+    }
+    let body = document.getElementById('viewerBody');
+    let print = document.createElement('div');
+    // <a class="btn btn-primary" href="#" role="button">Link</a>
+    print.innerHTML = `<a onclick="printImg('data:image/png;base64,${base64}')" class="btn btn-primary w-100 mt-2" href="#" role="button">Print</a>`
+    print.id = 'printDiv';
+    body.appendChild(print);
+    const viewerModal = new bootstrap.Modal('#viewerModal', {
+        backdrop: false,
+        focus: true,
+        keyboard: true
+    });
+    viewerModal.show();
+}
+
+function printImg(img) {
+  var win = window.open('');
+  win.document.write('<img src="' + img + '" onload="window.print();window.close()">');
+  win.focus();
 }

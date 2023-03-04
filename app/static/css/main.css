@@ -11664,15 +11664,12 @@ html {
   height: 100%;
   z-index: 999999;
   top: 0;
-  background-color: var(--bs-body-bg);
+  color: white;
+  background-color: var(--bs-primary);
   overflow: hidden;
 }
 #banned h1, #banned .h1 {
   margin-bottom: 0;
-}
-#banned code {
-  width: 50%;
-  word-wrap: break-word;
 }
 
 #messages {
