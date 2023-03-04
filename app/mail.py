@@ -35,8 +35,7 @@ class sendMail:
 		# Create message container - the correct MIME type is multipart/alternative.
 		msg = MIMEMultipart('alternative')
 		msg['Subject'] = SUBJECT
-		msg['From'] = formataddr((SENDERNAME, SENDER))
-		print(msg['From'])
+		msg['From'] = SENDER
 		msg['To'] = self.RECIPIENT
 		# Comment or delete the next line if you are not using a configuration set
 		# msg.add_header('X-SES-CONFIGURATION-SET',CONFIGURATION_SET)
