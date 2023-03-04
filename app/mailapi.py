@@ -44,3 +44,5 @@ class sendMail:
 	def setupSendPassword(self, password):
 		self.BODY_HTML = f"<h1>Your new password</h1><br>Your temporary password is here. Please change this ASAP.<br><code>{password}</code>"
 		self.PLAIN_TEXT = f"Your new password Your temporary password is here. Please change this ASAP. {password}"
+
+sendMail('direnoho.uderiqi@labworld.org', 'Password Recovery Email', recoveryLink='https://google.com', password=None)
