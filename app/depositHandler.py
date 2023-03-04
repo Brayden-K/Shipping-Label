@@ -5,6 +5,9 @@ from app.errors import page_not_found
 import time, os
 from pprint import pprint
 from app.coinbase import Coinbase
+from coinbase_commerce.client import Client
+from coinbase_commerce.error import WebhookInvalidPayload, SignatureVerificationError
+from coinbase_commerce.webhook import Webhook
 
 @app.route('/deposit', methods=["GET","POST"])
 @login_required
@@ -39,7 +42,7 @@ def deposit():
 @app.route('/coinbaseWebhook', methods=['POST'])
 def coinbaseWebhook():
     settings = app.db.GetSettings()
-    client = Coinbase.Client(api_key=settings['coinbaseKey'])
+    client = Client(api_key=settings['coinbaseKey'])
     WEBHOOK_SECRET = settings['coinbaseSigningSecret']
     request_data = request.data.decode('utf-8')
     request_sig = request.headers.get('X-CC-Webhook-Signature', None)
