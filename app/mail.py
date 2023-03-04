@@ -51,6 +51,7 @@ class sendMail:
 			with SMTP(HOST, PORT) as server:
 				server.starttls(context=context)
 				server.login(USERNAME_SMTP, PASSWORD_SMTP)
+				print(SENDER, self.RECIPIENT, msg.as_string())
 				server.sendmail(SENDER, self.RECIPIENT, msg.as_string())
 				server.close()
 				print("Email sent!")
