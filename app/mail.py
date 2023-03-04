@@ -1,8 +1,9 @@
 from app import app
 from email.utils import formataddr
-from smtplib import SMTP_SSL, SMTPException
+from smtplib import SMTP_SSL, SMTPException, SMTP
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import ssl
 
 class sendMail:
 	def __init__(self, RECIPIENT, subject, recoveryLink=None, password=None):
@@ -43,7 +44,9 @@ class sendMail:
 		
 		# Try to send the message.
 		try:
-		    with SMTP_SSL(HOST, PORT) as server:
+			context = ssl.create_default_context()
+		    with SMTP(HOST, PORT) as server:
+		    	server.starttls(context=context)
 		        server.login(USERNAME_SMTP, PASSWORD_SMTP)
 		        server.sendmail(SENDER, self.RECIPIENT, msg.as_string())
 		        server.close()
