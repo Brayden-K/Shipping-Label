@@ -147,11 +147,13 @@ def recoverPassword():
 		
 	# Check if email exists in form
 	if not 'recoverUsername' in request.form:
-		return {'success': False, 'msg': 'No email provided'}
+		flash('No email provided.')
+		return redirect(url_for('index'))
 
 	# Check if email exists in database
 	if not app.db.GetUserByEmail(request.form.get('recoverUsername')):
-		return {'success': False, 'msg': 'Email does not exist.'}
+		flash('Email does not exist.')
+		return redirect(url_for('index'))
 
 	# Generate random recovery code
 	code = generate_random_string(20)
