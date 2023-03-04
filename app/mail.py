@@ -45,15 +45,15 @@ class sendMail:
 		# Try to send the message.
 		try:
 			context = ssl.create_default_context()
-		    with SMTP(HOST, PORT) as server:
-		    	server.starttls(context=context)
-		        server.login(USERNAME_SMTP, PASSWORD_SMTP)
-		        server.sendmail(SENDER, self.RECIPIENT, msg.as_string())
-		        server.close()
-		        print("Email sent!")
+			with SMTP(HOST, PORT) as server:
+				server.starttls(context=context)
+				server.login(USERNAME_SMTP, PASSWORD_SMTP)
+				server.sendmail(SENDER, self.RECIPIENT, msg.as_string())
+				server.close()
+				print("Email sent!")
 		
 		except SMTPException as e:
-		    print("Error: ", e)
+			print("Error: ", e)
 
 	def setupSendCode(self, link):
 		self.BODY_HTML = f"<h1>Password Recovery</h1><br>Click this link to recover your password. <a href='{link}'>{link}</a>"
