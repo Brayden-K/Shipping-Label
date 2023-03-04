@@ -57,6 +57,7 @@ class sendMail:
 		
 		except SMTPException as e:
 			print("Error: ", e)
+			print(traceback.format_exc())
 
 	def setupSendCode(self, link):
 		self.BODY_HTML = f"<h1>Password Recovery</h1><br>Click this link to recover your password. <a href='{link}'>{link}</a>"
