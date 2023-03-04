@@ -46,7 +46,9 @@ class sendMail:
 		try:
 			context = ssl.SSLContext(ssl.PROTOCOL_TLS)
 			with SMTP(HOST, PORT) as server:
+				server.ehlo()
 				server.starttls(context=context)
+				server.ehlo()
 				server.login(USERNAME_SMTP, PASSWORD_SMTP)
 				server.sendmail(SENDER, self.RECIPIENT, msg.as_string())
 				server.close()
