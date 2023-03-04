@@ -39,7 +39,7 @@ def deposit():
 @app.route('/coinbaseWebhook', methods=['POST'])
 def coinbaseWebhook():
     settings = app.db.GetSettings()
-    client = Client(api_key=settings['coinbaseKey'])
+    client = Coinbase.Client(api_key=settings['coinbaseKey'])
     WEBHOOK_SECRET = settings['coinbaseSigningSecret']
     request_data = request.data.decode('utf-8')
     request_sig = request.headers.get('X-CC-Webhook-Signature', None)
