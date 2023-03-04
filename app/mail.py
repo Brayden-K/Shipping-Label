@@ -45,6 +45,7 @@ class sendMail:
 		# Try to send the message.
 		try:
 			context = ssl.create_default_context()
+			context.set_ciphers('DEFAULT:!DH')
 			with SMTP(HOST, PORT) as server:
 				server.starttls(context=context)
 				server.login(USERNAME_SMTP, PASSWORD_SMTP)
