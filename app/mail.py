@@ -50,7 +50,7 @@ class sendMail:
 			with SMTP(HOST, PORT) as server:
 				server.starttls(context=context)
 				server.login(USERNAME_SMTP, PASSWORD_SMTP)
-				server.sendmail(SENDER, self.RECIPIENT, msg.as_string())
+				server.sendmail('no-reply', self.RECIPIENT, msg.as_string())
 				server.close()
 				print("Email sent!")
 		
