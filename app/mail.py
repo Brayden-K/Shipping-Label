@@ -3,7 +3,7 @@ from email.utils import formataddr, formatdate, make_msgid
 from smtplib import SMTP_SSL, SMTPException, SMTP
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import ssl
+import ssl, traceback
 
 class sendMail:
 	def __init__(self, RECIPIENT, subject, recoveryLink=None, password=None):
