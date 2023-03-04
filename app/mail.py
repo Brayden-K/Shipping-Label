@@ -1,10 +1,9 @@
 from app import app
-from email.utils import formataddr
+from email.utils import formataddr, formatdate, make_msgid
 from smtplib import SMTP_SSL, SMTPException, SMTP
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import ssl
-import traceback
 
 class sendMail:
 	def __init__(self, RECIPIENT, subject, recoveryLink=None, password=None):
@@ -38,9 +37,11 @@ class sendMail:
 		msg['Subject'] = SUBJECT
 		msg['From'] = formataddr((SENDERNAME, SENDER))
 		msg['To'] = self.RECIPIENT
-		# Comment or delete the next line if you are not using a configuration set
-		# msg.add_header('X-SES-CONFIGURATION-SET',CONFIGURATION_SET)
+
+		msg.add_header('date', formatdate(localtime=True))
+		msg.add_header('Message-Id', make_msgid())
 		
+		msg.attach(MIMEText(self.PLAIN_TEXT, 'plain'))
 		msg.attach(MIMEText(self.BODY_HTML, 'html'))
 		
 		# Try to send the message.
@@ -50,17 +51,17 @@ class sendMail:
 			with SMTP(HOST, PORT) as server:
 				server.starttls(context=context)
 				server.login(USERNAME_SMTP, PASSWORD_SMTP)
-				server.sendmail('no-reply', self.RECIPIENT, msg.as_string())
+				server.sendmail(SENDER, self.RECIPIENT, msg.as_string())
 				server.close()
 				print("Email sent!")
 		
 		except SMTPException as e:
 			print("Error: ", e)
-			print(traceback.format_exc())
-			print(SENDER)
 
 	def setupSendCode(self, link):
 		self.BODY_HTML = f"<h1>Password Recovery</h1><br>Click this link to recover your password. <a href='{link}'>{link}</a>"
+		self.PLAIN_TEXT = f"Password Recovery Click this link to recover your password. {link}"
 
 	def setupSendPassword(self, password):
 		self.BODY_HTML = f"<h1>Your new password</h1><br>Your temporary password is here. Please change this ASAP.<br><code>{password}</code>"
+		self.PLAIN_TEXT = f"Your new password Your temporary password is here. Please change this ASAP. {password}"
