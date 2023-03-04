@@ -1,4 +1,31 @@
 {% extends "admin/admin.html" %}
 {% block admincontent %}
-
+<section id="adminInvoices">
+		<div class="card">
+			<table id="adminInvoicesTable" class="table table-striped" style="width:100%">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Owner ID</th>
+						<th>Invoice ID</th>
+						<th>Email</th>
+						<th>Amount</th>
+						<th>Currency</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for invoice in invoices %}
+						<tr>
+							<td>{{invoice.id}}</td>
+							<td>{{invoice.ownerId}}</td>
+							<td>{{invoice.invoiceId}}</td>
+							<td>{{invoice.email}}</td>
+							<td>{{invoice.amount}}</td>
+							<td>{{invoice.currency}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}

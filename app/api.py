@@ -49,6 +49,15 @@ def api():
 			services = app.db.GetServices(data['id'])
 			return {'success': True, 'services': services}
 
+		case 'addBalance':
+			data = request.form.to_dict()
+			user = app.db.GetUserByEmail(request.form.get('email'))
+			if not user:
+				return {'success': False, 'msg': 'User not found.'}
+
+			app.db.AddBalanceToUser(request.form.get('email'), request.form.get('amount'))
+			return {'success': True}
+
 		case 'changePassword':
 			data = request.form.to_dict()
 			if not data['currentPassword']:

@@ -12,6 +12,10 @@ document.getElementById('showDashboardMessage').addEventListener('change', funct
     }
 });
 
+document.getElementById("addBalanceBtn").addEventListener("click", function(){
+    addBalance();
+});
+
 $(document).ready(function () {
     $('#adminTicketTable').DataTable({
         responsive: true,
@@ -26,6 +30,12 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#adminUsersTable').DataTable({
+        responsive: true,
+    });
+});
+
+$(document).ready(function () {
+    $('#adminInvoicesTable').DataTable({
         responsive: true,
     });
 });
@@ -143,4 +153,26 @@ function printImg(img) {
   var win = window.open('');
   win.document.write('<img src="' + img + '" onload="window.print();window.close()">');
   win.focus();
+}
+
+async function addBalance() {
+    if (!document.getElementById('addBalanceEmail').value || !document.getElementById('addBalanceAmount').value) {
+        sendMessage('Email and Amount are required to add a balance');
+        return;
+    }
+    let addBalanceEmail = document.getElementById('addBalanceEmail').value;
+    let addBalanceAmount = document.getElementById('addBalanceAmount').value;
+
+    let data = {
+        'action': 'addBalance',
+        'email': addBalanceEmail,
+        'amount': addBalanceAmount
+    }
+
+    res = await sendPost(data);
+    if (res['success']) {
+        sendMessage('Balance has been added to user');
+    } else {
+        sendMessage(res['msg']);
+    }
 }

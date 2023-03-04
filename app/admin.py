@@ -19,6 +19,11 @@ def tickets():
 	tickets = app.db.GetAllTickets()
 	return render_template('admin/tickets.html', tickets=tickets)
 
+@app.route('/admin/invoices')
+def invoices():
+	invoices = app.db.GetAllInvoices()
+	return render_template('admin/invoices.html', invoices=invoices)
+
 @app.route('/admin/members')
 def members():
 	members = app.db.GetAllMembers()
